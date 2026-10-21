@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Approval page</title>
+<style>
+div { 
+	display: block; 
+}
+</style>
+	
+<style>
+/* Layout container to hold video and button side-by-side */
+.video-section {
+  display: flex;
+  align-items: center; /* Vertically centers the button with the video */
+  gap: 20px;          /* Space between the video and the button */
+  max-width: 900px;
+}
+
+.video-container {
+  position: relative;
+  flex: 1;            /* Takes up the available width */
+  background: #000;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* External Play Button Styling */
+.external-play-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.external-play-btn:hover {
+  background: #dc0000;
+}
+
+/* Optional: Hide or change button text when playing */
+.video-section.playing .external-play-btn {
+  opacity: 0.6;
+}
+</style>
+	
+	
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+};
+</script>
+	
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.video-section').forEach(section => {
+    const video = section.querySelector('video');
+    const playBtn = section.querySelector('.external-play-btn');
+
+    // Function to handle play/pause toggle
+    const togglePlay = () => {
+      if (video.paused) {
+        video.play().then(() => {
+          section.classList.add('playing');
+          playBtn.textContent = "⏸ Pause";
+        }).catch(error => {
+          console.log("Playback was prevented:", error);
+        });
+      } else {
+        video.pause();
+        section.classList.remove('playing');
+        playBtn.textContent = "▶ Play";
+      }
+    };
+
+    // Trigger playback from the external button
+    playBtn.addEventListener('click', togglePlay);
+
+    // Optional: Allow clicking the video itself to toggle pause/play too
+    video.addEventListener('click', togglePlay);
+
+    // Reset when video finishes
+    video.addEventListener('ended', () => {
+      section.classList.remove('playing');
+      playBtn.textContent = "▶ Play";
+      video.currentTime = 0;
+    });
+  });
+});
+</script>
+	
+</head>
+
+<body>
+	
+<div w3-include-html="menu-pband-blank.html"></div>
+
+<script>
+includeHTML();
+</script>
+
+
+
+
+<div>	
+<hr />
+<p><font face="Arial, Helvetica, sans-serif" color="#000000">KOMO TV Snipe</font></p>
+	
+
+<font face="Arial, Helvetica, sans-serif" color="#000000">Season Pass</font><br />
+	
+<div class="video-section">
+  <!-- Clean video element with zero native controls on load -->
+  <div class="video-container">
+    <video preload="metadata" playsinline>
+      <source src="assets/Snipe-SeasonPass-1280x86.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Play button placed completely outside the video frame -->
+  <button class="external-play-btn" type="button">▶ Play</button>
+</div>
+<hr />
+<p></p>
+	
+
+<font face="Arial, Helvetica, sans-serif" color="#000000">Snow 1</font><br />
+	
+<div class="video-section">
+  <!-- Clean video element with zero native controls on load -->
+  <div class="video-container">
+    <video preload="metadata" playsinline>
+      <source src="assets/Snipe-Snow1-1280x86.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Play button placed completely outside the video frame -->
+  <button class="external-play-btn" type="button">▶ Play</button>
+</div>
+<hr />
+<p></p>
+	
+
+<font face="Arial, Helvetica, sans-serif" color="#000000">Snow 2</font><br />
+	
+<div class="video-section">
+  <!-- Clean video element with zero native controls on load -->
+  <div class="video-container">
+    <video preload="metadata" playsinline>
+      <source src="assets/Snipe-Snow2-1280x86.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Play button placed completely outside the video frame -->
+  <button class="external-play-btn" type="button">▶ Play</button>
+</div>
+<hr />
+<p></p>	
+	
+
+<font face="Arial, Helvetica, sans-serif" color="#000000">What&#39;s New</font><br />
+	
+<div class="video-section">
+  <!-- Clean video element with zero native controls on load -->
+  <div class="video-container">
+    <video preload="metadata" playsinline>
+      <source src="assets/Snipe-WhatsNew-1280x86.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Play button placed completely outside the video frame -->
+  <button class="external-play-btn" type="button">▶ Play</button>
+</div>
+<hr />
+<p></p>	
+	
+</div>
+	
+</body>
+</html>
